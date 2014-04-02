@@ -316,6 +316,15 @@
 					}
 				});
 				$(data.fake_input).blur();
+
+				// Bind handler for click event
+				if (settings.onClickTag) {
+				    $(data.holder).find('.tag').bind('click', function(event){
+				        var f = settings.onClickTag;
+				        f.call(this, $(this).find('span'));
+				        event.stopPropagation(); // Don't want other event catching
+				    });
+				}
 				
 				//Removes the not_valid class when user changes the value of the fake input
 				if(data.unique) {
